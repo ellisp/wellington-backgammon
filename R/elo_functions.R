@@ -1,5 +1,3 @@
-rm(list=ls())
-
 
 elo_fibs <- function(winner, loser, matchlength){
   # for debuggng: winner = 1900; loser = 1500; matchlength = 7
@@ -89,6 +87,9 @@ rate_tournament <- function(match_results, starting_ratings = NULL){
   for(i in 1:length(full_results)){
     row.names(full_results[[i]]) <- NULL
   }
+    
+    latest_ratings$Rating <- round(latest_ratings$Rating, 1)
+    row.names(latest_ratings) <- 1:4
 
   
   return(list(full_results = full_results, 
@@ -98,17 +99,17 @@ rate_tournament <- function(match_results, starting_ratings = NULL){
 
 #=================Testing=======================
 
-match_results <- data.frame(Won = c("A", "A", "A", "B", "B", "C"),
-                            Lost = c("B", "B", "C", "D", "A", "B"),
-                            Length = c(7, 7, 7, 11, 11, 15),
-                            Date = as.Date("2014/09/20") + 1:6)
-starting_ratings <- data.frame(Player = c("A", "B", "C", "D"),
-                                    Rating = c(1500, 1900, 1720, 1420))
-
-rate_tournament(match_results, starting_ratings)
-
-
-X <- data.frame(Won = c(rep("P", 10), "A"),
-                Lost = c(rep("A", 10), "P"))
-Y <- data.frame(Player = "P", Rating = 1900)
-rate_tournament(X, Y)
+# match_results <- data.frame(Won = c("A", "A", "A", "B", "B", "C"),
+#                             Lost = c("B", "B", "C", "D", "A", "B"),
+#                             Length = c(7, 7, 7, 11, 11, 15),
+#                             Date = as.Date("2014/09/20") + 1:6)
+# starting_ratings <- data.frame(Player = c("A", "B", "C", "D"),
+#                                     Rating = c(1500, 1900, 1720, 1420))
+# 
+# rate_tournament(match_results, starting_ratings)
+# 
+# 
+# X <- data.frame(Won = c(rep("P", 10), "A"),
+#                 Lost = c(rep("A", 10), "P"))
+# Y <- data.frame(Player = "P", Rating = 1900)
+# rate_tournament(X, Y)

@@ -1,4 +1,5 @@
 source("R/elo_functions.R")
 
-results <- openxlsx::read.xlsx("data/results.xlsx")
+results <- read.csv("data/results.csv", stringsAsFactors = FALSE)
+
 rate_tournament(results)
